@@ -1,0 +1,146 @@
+#! /usr/bin/vvp
+:ivl_version "10.3 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x5efc6114ed70 .scope module, "ldpc_encoder_tb" "ldpc_encoder_tb" 2 5;
+ .timescale -9 -12;
+P_0x5efc61128640 .param/l "CODEWORD_LEN" 1 2 7, +C4<00000000000000000000001010100000>;
+P_0x5efc61128680 .param/l "MESSAGE_LEN" 1 2 8, +C4<00000000000000000000000101101000>;
+v0x5efc6116a280_0 .var "clk", 0 0;
+v0x5efc6116a340_0 .net "codeword_out", 671 0, v0x5efc61169d60_0;  1 drivers
+v0x5efc6116a410_0 .var "data_in", 359 0;
+v0x5efc6116a510_0 .net "done", 0 0, v0x5efc61169f30_0;  1 drivers
+v0x5efc6116a5e0_0 .var "reset_n", 0 0;
+v0x5efc6116a6d0_0 .var "start", 0 0;
+E_0x5efc6114ca10 .event edge, v0x5efc61169f30_0;
+S_0x5efc6114efe0 .scope module, "uut" "ldpc_encoder" 2 20, 3 2 0, S_0x5efc6114ed70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk"
+    .port_info 1 /INPUT 1 "reset_n"
+    .port_info 2 /INPUT 1 "start"
+    .port_info 3 /INPUT 360 "data_in"
+    .port_info 4 /OUTPUT 672 "codeword_out"
+    .port_info 5 /OUTPUT 1 "done"
+P_0x5efc611286d0 .param/l "CODEWORD_LEN" 0 3 3, +C4<00000000000000000000001010100000>;
+P_0x5efc61128710 .param/l "MESSAGE_LEN" 0 3 4, +C4<00000000000000000000000101101000>;
+v0x5efc611171a0_0 .net "clk", 0 0, v0x5efc6116a280_0;  1 drivers
+v0x5efc61169d60_0 .var "codeword_out", 671 0;
+v0x5efc61169e40_0 .net "data_in", 359 0, v0x5efc6116a410_0;  1 drivers
+v0x5efc61169f30_0 .var "done", 0 0;
+v0x5efc61169ff0_0 .net "reset_n", 0 0, v0x5efc6116a5e0_0;  1 drivers
+v0x5efc6116a100_0 .net "start", 0 0, v0x5efc6116a6d0_0;  1 drivers
+E_0x5efc61117ae0/0 .event negedge, v0x5efc61169ff0_0;
+E_0x5efc61117ae0/1 .event posedge, v0x5efc611171a0_0;
+E_0x5efc61117ae0 .event/or E_0x5efc61117ae0/0, E_0x5efc61117ae0/1;
+    .scope S_0x5efc6114efe0;
+T_0 ;
+    %wait E_0x5efc61117ae0;
+    %load/vec4 v0x5efc61169ff0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 672;
+    %assign/vec4 v0x5efc61169d60_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5efc61169f30_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x5efc6116a100_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0x5efc61169e40_0;
+    %concati/vec4 0, 0, 312;
+    %assign/vec4 v0x5efc61169d60_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5efc61169f30_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5efc61169f30_0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x5efc6114ed70;
+T_1 ;
+    %delay 5000, 0;
+    %load/vec4 v0x5efc6116a280_0;
+    %inv;
+    %store/vec4 v0x5efc6116a280_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x5efc6114ed70;
+T_2 ;
+    %vpi_call 2 33 "$dumpfile", "ldpc_encoder_tb.vcd" {0 0 0};
+    %vpi_call 2 34 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5efc6114ed70 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5efc6116a280_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5efc6116a5e0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5efc6116a6d0_0, 0, 1;
+    %pushi/vec4 0, 0, 360;
+    %store/vec4 v0x5efc6116a410_0, 0, 360;
+    %vpi_call 2 41 "$display", "Simulation started" {0 0 0};
+    %delay 20000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5efc6116a5e0_0, 0, 1;
+    %vpi_call 2 45 "$display", "Reset deasserted" {0 0 0};
+    %delay 20000, 0;
+    %pushi/vec4 2779096485, 0, 104;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %concati/vec4 2779096485, 0, 32;
+    %store/vec4 v0x5efc6116a410_0, 0, 360;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5efc6116a6d0_0, 0, 1;
+    %vpi_call 2 50 "$display", "Start signal set high, data_in = %h", v0x5efc6116a410_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5efc6116a6d0_0, 0, 1;
+    %vpi_call 2 53 "$display", "Start signal set low" {0 0 0};
+T_2.0 ;
+    %load/vec4 v0x5efc6116a510_0;
+    %pad/u 32;
+    %pushi/vec4 1, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %cmpi/ne 1, 0, 1;
+    %jmp/0xz T_2.1, 6;
+    %wait E_0x5efc6114ca10;
+    %jmp T_2.0;
+T_2.1 ;
+    %load/vec4 v0x5efc6116a340_0;
+    %load/vec4 v0x5efc6116a410_0;
+    %concati/vec4 0, 0, 312;
+    %cmp/e;
+    %jmp/0xz  T_2.2, 4;
+    %vpi_call 2 60 "$display", "Test PASSED!" {0 0 0};
+    %jmp T_2.3;
+T_2.2 ;
+    %vpi_call 2 62 "$display", "Test FAILED!" {0 0 0};
+    %load/vec4 v0x5efc6116a410_0;
+    %concati/vec4 0, 0, 312;
+    %vpi_call 2 63 "$display", "Expected: %h", S<0,vec4,u672> {1 0 0};
+    %vpi_call 2 64 "$display", "Got:      %h", v0x5efc6116a340_0 {0 0 0};
+T_2.3 ;
+    %delay 20000, 0;
+    %vpi_call 2 68 "$display", "Simulation finished" {0 0 0};
+    %vpi_call 2 69 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb/ldpc_encoder_tb.v";
+    "rtl/ldpc_encoder.v";

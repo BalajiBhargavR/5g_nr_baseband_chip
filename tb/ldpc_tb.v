@@ -1,13 +1,13 @@
 `timescale 1ns/1ps
 
-module fft_tb;
+module ldpc_tb;
 
     reg clk, rst;
     reg  [15:0] data_in;
     wire [15:0] data_out;
 
-    // Instantiate your FFT module. Change 'fft' to the actual module name if needed.
-    fft dut (
+    // Instantiate your LDPC decoder module. Update 'ldpc_decoder' if your module has a different name.
+    ldpc_decoder dut (
         .clk(clk),
         .rst(rst),
         .data_in(data_in),
@@ -36,8 +36,8 @@ module fft_tb;
 
     // VCD waveform dump
     initial begin
-        $dumpfile("fft_tb.vcd");
-        $dumpvars(0, fft_tb);
+        $dumpfile("ldpc_tb.vcd");
+        $dumpvars(0, ldpc_tb);
     end
 
 endmodule

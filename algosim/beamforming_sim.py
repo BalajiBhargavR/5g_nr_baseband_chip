@@ -1,20 +1,12 @@
 import numpy as np
 
-# Example: Simple beamforming with a uniform linear array (ULA)
-N = 8  # Number of antennas
-theta_deg = 30  # Beam angle in degrees
-d = 0.5  # Antenna spacing (in wavelengths)
+def beamform(weights, signals):
+    return np.dot(weights, signals)
 
-# Steering vector
-theta = np.deg2rad(theta_deg)
-n = np.arange(N)
-steer = np.exp(1j * 2 * np.pi * d * n * np.sin(theta))
-
-# Simulated received signal (all ones for simplicity)
-x = np.ones(N, dtype=complex)
-
-# Apply beamforming
-y = np.vdot(steer, x) / N
-
-print("Steering vector:", steer)
-print("Beamformed output:", y)
+print("=== Beamforming Example ===")
+signals = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+weights = np.array([1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3])
+output = beamform(weights, signals)
+print("Signals:", signals)
+print("Weights:", weights)
+print("Beamformed Output:", output)

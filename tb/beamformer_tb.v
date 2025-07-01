@@ -1,23 +1,20 @@
 `timescale 1ns/1ps
 
-module fft_tb;
+module tb_beamformer;
 
     reg clk, rst;
     reg  [15:0] data_in;
     wire [15:0] data_out;
 
-    // Instantiate your FFT module. Change 'fft' to the actual module name if needed.
-    fft dut (
+    beamformer dut (
         .clk(clk),
         .rst(rst),
         .data_in(data_in),
         .data_out(data_out)
     );
 
-    // Clock generation
     always #5 clk = ~clk;
 
-    // Stimulus
     initial begin
         clk = 0;
         rst = 1;
@@ -34,10 +31,9 @@ module fft_tb;
         $finish;
     end
 
-    // VCD waveform dump
     initial begin
-        $dumpfile("fft_tb.vcd");
-        $dumpvars(0, fft_tb);
+        $dumpfile("tb_beamformer.vcd");
+        $dumpvars(0, tb_beamformer);
     end
 
 endmodule
