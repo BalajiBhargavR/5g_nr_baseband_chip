@@ -1,15 +1,21 @@
-// Simple FFT module stub for 5G NR baseband chip
-module fft #(
-    parameter N = 8
-)(
-    input wire clk,
-    input wire rst,
-    input wire [15:0] din_real,
-    input wire [15:0] din_imag,
-    output wire [15:0] dout_real,
-    output wire [15:0] dout_imag,
-    input wire din_valid,
-    output wire dout_valid
+module fft #(parameter N = 2048)(
+    input clk,
+    input rst,
+    input [15:0] din,
+    input valid_in,
+    output reg [15:0] dout,
+    output reg valid_out
 );
-// Implementation TBD
+// Dummy FFT logic for illustration
+always @(posedge clk) begin
+    if (rst) begin
+        dout <= 0;
+        valid_out <= 0;
+    end else if (valid_in) begin
+        dout <= din; // Pass-through (real FFT would be here)
+        valid_out <= 1;
+    end else begin
+        valid_out <= 0;
+    end
+end
 endmodule

@@ -24,3 +24,18 @@
 ```
 - All blocks connect via AXI interconnect.
 - External interfaces: JESD204B (RF), PCIe (backhaul), UART/I2C (debug).
+# Architecture Documentation
+
+## Top-Level Block Diagram
+
+```
++-------------------------------------------------------+
+|      5G NR Baseband SoC Top Level                     |
+|                                                       |
+|  +---------+   +-----+  +----------+    +----------+  |
+|  |  RISC-V |<->| DSP |  |Beamformer|<-->| RF Front |  |
+|  |  Core   |   |     |  |          |    |    End   |  |
+|  +---------+   +-----+  +----------+    +----------+  |
+|                                                       |
++-------------------------------------------------------+
+```

@@ -1,9 +1,7 @@
-# RTL (Register Transfer Level) Verilog Code
+# RTL Source
 
-This directory contains Verilog source files for the 5G NR baseband chip.
-
-- `dsp/`: DSP building blocks (FFT, LDPC, etc.)
-- `beamforming/`: Hardware for beamforming
-- `baseband/`: Top-level PHY pipeline and integration
-
-Add new modules or submodules as you design and implement each function.
+- Verilog code for major SoC blocks:
+  - riscv/: RISC-V core (external IP or open-source like PicoRV32 or Rocket)
+  - dsp/: DSP modules (FFT, LDPC, etc.)
+  - beamforming/: Beamformer
+  - baseband/: PHY pipeline

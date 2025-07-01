@@ -1,0 +1,27 @@
+# Synthesize phy_pipeline
+read_verilog rtl/baseband/phy_pipeline.v
+synth -top phy_pipeline
+write_json phy_pipeline.json
+write_edif phy_pipeline.edif
+delete
+
+# Synthesize ldpc_decoder
+read_verilog rtl/dsp/ldpc_decoder.v
+synth -top ldpc_decoder
+write_json ldpc_decoder.json
+write_edif ldpc_decoder.edif
+delete
+
+# Synthesize fft
+read_verilog rtl/dsp/fft.v
+synth -top fft
+write_json fft.json
+write_edif fft.edif
+delete
+
+# Synthesize beamformer
+read_verilog rtl/beamforming/beamformer.v
+synth -top beamformer
+write_json beamformer.json
+write_edif beamformer.edif
+delete

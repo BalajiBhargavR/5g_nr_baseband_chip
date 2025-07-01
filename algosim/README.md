@@ -1,10 +1,11 @@
-# Algorithm Simulations
+# Algorithm Simulation
 
-This folder contains high-level algorithm simulations for 5G NR building blocks.
+- Python scripts for LDPC, FFT, Beamforming, and 5G NR numerology.
+- Run simulations to validate and profile algorithms before RTL coding.
 
-- `ldpc_fft_sim.py`: LDPC encoder/decoder and FFT simulation.
-- `beamforming_sim.py`: Beamforming algorithm simulation.
+## Running
 
-Requirements:
-- Python 3.x
-- `numpy`, `scipy`, `pyldpc` (`pip install numpy scipy pyldpc`)
+```bash
+python3 ldpc_fft_sim.py
+python3 beamforming_sim.py
+```
